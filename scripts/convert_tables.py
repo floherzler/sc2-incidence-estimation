@@ -17,5 +17,11 @@ for i in range(len(df)):
             if j >= 0:  # To avoid negative indexing
                 df['daily_avg_cases'].iloc[j] = daily_average
 
+# delete the new_cases column
+df = df.drop(columns=['new_cases'])
 df.to_csv('../data/france_new_avg_cases_2022.csv', index=False)
 print(df.head(10))
+
+df2 = pd.read_csv('../data/sonar_output.csv')
+df2 = df2[df2['collection'] == 'FRANCE']
+df2.to_csv('../data/france_sonar_output.csv', index=False)
