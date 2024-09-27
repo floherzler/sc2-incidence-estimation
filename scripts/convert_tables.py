@@ -1,5 +1,7 @@
 # read new_cases
 import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 df = pd.read_csv('../data/france_new_cases_2022_owid.csv')
 
@@ -17,6 +19,7 @@ for i in range(len(df)):
             if j >= 0:  # To avoid negative indexing
                 df['daily_avg_cases'].iloc[j] = daily_average
 
+
 # delete the new_cases column
 df = df.drop(columns=['new_cases'])
 df.to_csv('../data/france_new_avg_cases_2022.csv', index=False)
@@ -25,3 +28,35 @@ print(df.head(10))
 df2 = pd.read_csv('../data/sonar_output.csv')
 df2 = df2[df2['collection'] == 'FRANCE']
 df2.to_csv('../data/france_sonar_output.csv', index=False)
+
+# histogram of the amount of reported cases 
+df = pd.read_csv('../data/france_new_avg_cases_2022.csv', parse_dates=[0], dayfirst=False) 
+start_date = '2022-01-01'
+end_date = '2022-06-30'
+filtered_df = df[(df['date'] >= start_date) & (df['date'] <= end_date)]
+
+num_bins = 20 
+
+plt.figure(figsize=(10, 6))
+counts, bin_edges, _ = plt.hist(filtered_df['date'], weights=filtered_df['daily_avg_cases'], bins=num_bins, edgecolor='black')
+
+plt.xlabel('Dates')
+plt.ylabel('reported cases')
+plt.title(f'Histogram of reported cases over Time (2022-01-01 to 2022-06-30) with {num_bins} bins')
+plt.xticks(rotation=45)
+plt.gca().set_xticks(bin_edges) 
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+plt.tight_layout() 
+plt.savefig('../data/hist.png', dpi=300, bbox_inches='tight') 
+
+#histogram for sequences per day
+df = pd.read_csv('../data/france_sonar_output.csv', parse_dates=['date'], dayfirst=False)  # Adjust dayfirst as needed
+date_counts = df['date'].value_counts().sort_index()  # Count occurrences per date and sort by date
+plt.figure(figsize=(10, 6))
+plt.bar(date_counts.index, date_counts.values, width=0.8, edgecolor='black')
+plt.xlabel('Date')
+plt.ylabel('Number of Entries')
+plt.title('Number of sequences per Day')
+plt.xticks(rotation=45)
+plt.tight_layout() 
+plt.savefig('../data/hist_seq.png', dpi=300, bbox_inches='tight') 
