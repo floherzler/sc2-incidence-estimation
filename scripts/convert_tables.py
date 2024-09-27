@@ -50,10 +50,16 @@ plt.tight_layout()
 plt.savefig('../data/hist.png', dpi=300, bbox_inches='tight') 
 
 #histogram for sequences per day
-df = pd.read_csv('../data/france_sonar_output.csv', parse_dates=['date'], dayfirst=False)  # Adjust dayfirst as needed
+df = pd.read_csv('../data/france_sonar_output.csv', parse_dates=['date'], dayfirst=False) 
 date_counts = df['date'].value_counts().sort_index()  # Count occurrences per date and sort by date
 plt.figure(figsize=(10, 6))
-plt.bar(date_counts.index, date_counts.values, width=0.8, edgecolor='black')
+weekdays = pd.to_datetime(date_counts.index).day_name()  # Get the day of the week for each date
+colors = ['red' if day == 'Monday' else 'blue' for day in weekdays]  #
+plt.bar(date_counts.index, date_counts.values, color=colors, width=0.8, edgecolor='black')
+from matplotlib.patches import Patch
+legend_elements = [Patch(facecolor='red', edgecolor='black', label='Monday'),
+                   Patch(facecolor='blue', edgecolor='black', label='Other Days')]
+plt.legend(handles=legend_elements)
 plt.xlabel('Date')
 plt.ylabel('Number of Entries')
 plt.title('Number of sequences per Day')
