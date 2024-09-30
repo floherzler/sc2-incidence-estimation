@@ -1,4 +1,7 @@
-data/
+data/given/france/project4.db
+data/fastas/
 pipelines/
 *.log
 results/gin_out_fr/.snakemake/
+results/gin_out_de/.snakemake/
+results/gin_out_sp/.snakemake/

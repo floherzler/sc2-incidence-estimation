@@ -1,5 +1,5 @@
 # Full path to samples, either to raw fasta file (including collection date in header) or covSonar like output in csv format containing date and SNVs
-samples: data/sonar_out_fr.csv 
+samples: ../../data/sonar_out_fr.csv 
 # Sample name for plot grouping, e.g. country or data set name (optional. If not given, taking sample name form above)
 name: france
 # Full path to reference sequence file in FASTA format (only necessary if fasta files are given)
@@ -33,7 +33,7 @@ smoothing_bandwidth_phi: 7
 # 22-01-2020: "%d-%m-%Y"
 # 2020-02-24T18:00:00: "%Y-%m-%dT%H:%M:%S"
 reported_cases:
-- data/france_new_avg_cases_2022.csv
+- ../../data/france_new_avg_cases_2022.csv
 - ","
 - date
 - daily_avg_cases

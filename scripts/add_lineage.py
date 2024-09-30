@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 # Paths to your files
 csv_file = "../data/france_sonar_output.csv"
-db_path = "../data/project4.db"
+db_path = "../data/given/france/project4.db"
 output_fasta = "temp.fasta"  # Temporary FASTA file to hold restored sequence
 num_rows = 1  # Number of rows to process
 
