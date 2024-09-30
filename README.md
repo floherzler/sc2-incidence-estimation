@@ -39,19 +39,19 @@ cd ..
 python scripts/get_lineages.py
 
 # update Database
-pipelines/covsonar/sonar.py update --db data/project4.db --csv results/pangolin.csv --fields acession=accesion lineage=lineage
+pipelines/covsonar/sonar.py update --db data/project4.db --csv results/pangolin.csv --fields accession=accession lineage=lineage
 
 # Clone + activate GInPipe env
 cd pipelines
 git clone git@github.com:KleistLab/GInPipe.git
 mamba env create -f GInPipe/env/env.yml
 mamba activate GInPipe3
+cd ..
 
 # Run GInPipe for France, Germany, Spain
-snakemake --snakefile pipelines/GInPipe/GInPipe --configfile pipelines/gin_config_fr.yaml -d ../results/gin_out_fr --cores all
+snakemake --snakefile pipelines/GInPipe/GInPipe --configfile gin_config_fr.yaml -d results/gin_out_fr --cores all
 
-snakemake --snakefile pipelines/GInPipe/GInPipe --configfile pipelines/gin_config_de.yaml -d ../results/gin_out_de --cores all
+snakemake --snakefile pipelines/GInPipe/GInPipe --configfile gin_config_de.yaml -d results/gin_out_de --cores all
 
-snakemake --snakefile pipelines/GInPipe/GInPipe --configfile pipelines/gin_config_sp.yaml -d ../results/gin_out_sp --cores all
-cd ..
+snakemake --snakefile pipelines/GInPipe/GInPipe --configfile gin_config_sp.yaml -d results/gin_out_sp --cores all
 ```
