@@ -25,10 +25,6 @@ df = df.drop(columns=['new_cases'])
 df.to_csv('../data/france_new_avg_cases_2022.csv', index=False)
 print(df.head(10))
 
-df2 = pd.read_csv('../data/sonar_output.csv')
-df2 = df2[df2['collection'] == 'FRANCE']
-df2.to_csv('../data/france_sonar_output.csv', index=False)
-
 # histogram of the amount of reported cases 
 df = pd.read_csv('../data/france_new_avg_cases_2022.csv', parse_dates=[0], dayfirst=False) 
 start_date = '2022-01-01'
@@ -47,7 +43,7 @@ plt.xticks(rotation=45)
 plt.gca().set_xticks(bin_edges) 
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 plt.tight_layout() 
-plt.savefig('../data/hist.png', dpi=300, bbox_inches='tight') 
+plt.savefig('../results/plots/hist.png', dpi=300, bbox_inches='tight') 
 
 #histogram for sequences per day
 df = pd.read_csv('../data/france_sonar_output.csv', parse_dates=['date'], dayfirst=False) 
@@ -65,4 +61,4 @@ plt.ylabel('Number of Entries')
 plt.title('Number of sequences per Day')
 plt.xticks(rotation=45)
 plt.tight_layout() 
-plt.savefig('../data/hist_seq.png', dpi=300, bbox_inches='tight') 
+plt.savefig('../results/plots/hist_seq.png', dpi=300, bbox_inches='tight') 

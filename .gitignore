@@ -1,2 +1,4 @@
 data/
 pipelines/
+*.log
+results/gin_out_fr/.snakemake/
