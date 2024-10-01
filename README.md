@@ -27,7 +27,8 @@ python scripts/convert_tables.py
 # Get FASTA seq files with sonar --restore; ~30min for me
 mamba activate covsonar
 cd scripts
-python get_fastas.py
+python get_fastas.py ../data/sonar_out_fr.csv france
+python get_fastas.py ../data/sonar_out_sp.csv spain
 cd ..
 
 # Clone + activate pangolin env
@@ -38,7 +39,8 @@ mamba activate pangolin
 cd pangolin
 pip install .
 cd ../scripts
-python get_lineages.py # Get all lineages
+python get_lineages.py france pangolin_fr.csv
+python get_lineages.py spain pangolin_sp.csv
 # TODO modify for all countries
 cd ..
 

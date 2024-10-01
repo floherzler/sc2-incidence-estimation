@@ -1,2 +1,2 @@
 taxon,lineage,conflict,ambiguity_score,scorpio_call,scorpio_support,scorpio_conflict,scorpio_notes,version,pangolin_version,scorpio_version,constellation_version,is_designated,qc_status,qc_notes,note
-EPI_ISL_13086361,BA.2.12.1,0.0,,Omicron (BA.2-like),0.97,0.0,scorpio call: Alt alleles 60; Ref alleles 0; Amb alleles 2; Oth alleles 0,PUSHER-v1.30,4.3.1,0.3.19,v0.1.12,False,pass,Ambiguous_content:0.02,Usher placements: BA.2.12.1(1/1)
+EPI_ISL_11133199,AY.43,0.0,,Delta (B.1.617.2-like),1.0,0.0,scorpio call: Alt alleles 13; Ref alleles 0; Amb alleles 0; Oth alleles 0,PUSHER-v1.30,4.3.1,0.3.19,v0.1.12,False,pass,Ambiguous_content:0.02,Usher placements: AY.43(1/1)
