@@ -20,11 +20,9 @@ pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collectio
 pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collection SPAIN --date 2022-01-01:2022-07-01 > data/sonar_out_sp.csv
 # got reported cases for spain from https://ourworldindata.org/coronavirus/country/spain
 
-mamba activate base # assume matplotlib and pandas installed
+mamba activate base # assume matplotlib, pandas, altair installed
 python scripts/convert_tables.py
-# TODO plot in new script
-# TODO plot lineages + line chart reported cases
-# TODO plot also for spain and germany
+python scripts/histogram.py
 
 # Get FASTA seq files with sonar --restore; ~30min for me
 mamba activate covsonar
@@ -43,12 +41,24 @@ pip install .
 cd ../scripts
 python get_lineages.py france pangolin_fr.csv
 python get_lineages.py spain pangolin_sp.csv
-# TODO modify for all countries
 cd ..
 
-# update Database
+# update Database + get csv
 mamba activate covsonar
-pipelines/covsonar/sonar.py update --db data/given/france/project4.db --csv results/pangolin.csv --fields accession=accession lineage=lineage
+pipelines/covsonar/sonar.py update --db data/given/france/project4.db --csv results/pangolin_fr.csv --fields accession=accession lineage=lineage
+
+pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collection FRANCE --date 2022-01-01:2022-07-01 > results/lng_sonar_out_fr.csv
+
+
+pipelines/covsonar/sonar.py update --db data/given/france/project4.db --csv results/pangolin_sp.csv --fields accession=accession lineage=lineage
+
+pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collection SPAIN --date 2022-01-01:2022-07-01 > results/lng_sonar_out_sp.csv
+
+# plot lineages
+mamba activate base
+cd scripts
+python plot_lineages.py ../results/lng_sonar_out_fr.csv lineages_fr.png
+python plot_lineages.py ../results/lng_sonar_out_sp.csv lineages_sp.png
 
 # Clone + activate GInPipe env
 cd pipelines
