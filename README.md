@@ -1,6 +1,8 @@
 # SARS-CoV-2 Incidence Estimation
 ## Project 4 by Nora Wild and Florian Herzler
 
+![Workflow Diagram](results/plots/workFlo.svg)
+
 ```bash
 # Download project4.db
 # https://osf.io/uchtg -> data/given/france/project4.db
