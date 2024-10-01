@@ -1,0 +1,48 @@
+direction: right
+
+input: Input{
+    shape: rectangle
+    db: Database{
+        shape: image
+        icon: https://icons.terrastruct.com/essentials%2F117-database.svg
+    }
+    rep_cases: Reported Cases{
+        shape: image
+        icon: https://icons.terrastruct.com/essentials%2F257-file.svg
+    }
+}
+
+ginpipe: GInPipe{
+    shape: image
+    icon: ./ginpipe_logo_gpt.png
+}
+
+covsonar: covSonar{
+    shape: image
+    icon: https://raw.githubusercontent.com/rki-mf1/covsonar/master/logo.png
+}
+
+pangolin: Pangolin{
+    shape: image
+    icon: https://cov-lineages.org/assets/images/pangolin_logo.svg
+}
+
+output: Output{
+    shape: rectangle
+    incidence_estimation: Incidence Est.{
+        shape: image
+        icon: https://raw.githubusercontent.com/KleistLab/GInPipe/refs/heads/main/min_incidence_demo.png
+    }
+    py_vis: Python Vis.{
+        shape: image
+        icon: https://icons.terrastruct.com/dev%2Fpython.svg
+    }
+}
+
+
+pangolin -> input.db
+covsonar -> ginpipe
+input.db -> covsonar -> pangolin
+ginpipe -> output.incidence_estimation
+input.rep_cases -> ginpipe
+pangolin -> output.py_vis
