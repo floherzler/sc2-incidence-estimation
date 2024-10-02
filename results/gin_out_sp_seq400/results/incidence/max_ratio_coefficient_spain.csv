@@ -1,0 +1,2 @@
+country,code,date,cases,t,smoothed_phi,smoothed_cases,case_phi_ratio,min_n_true
+Spain,ESP,2022-01-21,137134.008,21,66.86457153845595,132581,1982.828827726032,132581

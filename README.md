@@ -21,8 +21,9 @@ pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collectio
 # got reported cases for spain from https://ourworldindata.org/coronavirus/country/spain
 
 mamba activate base # assume matplotlib, pandas, altair installed
-python scripts/convert_tables.py
-python scripts/histogram.py
+cd scripts
+python convert_tables.py
+python histogram.py
 
 # Get FASTA seq files with sonar --restore; ~30min for me
 mamba activate covsonar
@@ -57,8 +58,8 @@ pipelines/covsonar/sonar.py match --db data/given/france/project4.db --collectio
 # plot lineages
 mamba activate base
 cd scripts
-python plot_lineages.py ../results/lng_sonar_out_fr.csv lineages_fr.png
-python plot_lineages.py ../results/lng_sonar_out_sp.csv lineages_sp.png
+python plot_lineages.py ../results/lng_sonar_out_fr.csv lineages_fr.html
+python plot_lineages.py ../results/lng_sonar_out_sp.csv lineages_sp.html
 
 # Clone + activate GInPipe env
 cd pipelines

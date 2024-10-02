@@ -23,3 +23,9 @@ for i in range(len(df)):
 # delete the new_cases column
 df = df.drop(columns=['new_cases'])
 df.to_csv('../data/france_new_avg_cases_2022.csv', index=False)
+
+# read spain csv
+df_spain = pd.read_csv('../data/given/spain/spain_reported_cases_2022.csv')
+# multiple column 'newCases' by 48 to scale for the population
+df_spain['newCases'] = df_spain['newCases'] * 48
+df_spain.to_csv('../data/given/spain/spain_reported_cases_2022.csv', index=False)

@@ -11,18 +11,31 @@ if __name__ == '__main__':
     # group by 'lineage' and display stacked bars for each day
 
     args = parser.parse_args()
+    top_n = 5
     df = pd.read_csv(args.in_file)
-    df['lineage_simplified'] = df['lineage'].str.split('.').str[:1].str.join('.').str.lower()
+    df['lin_simple'] = df['lineage'].str.split('.').str[:2].str.join('.').str.lower()
+    # only keep top 5 lineages
+    top_lineages = df['lin_simple'].value_counts().head(top_n).index
+    df = df[df['lin_simple'].isin(top_lineages)]
 
-    print(df.head())
     # use altair
-    plot = alt.Chart(df).mark_area().encode(
+    plot_total = alt.Chart(df).mark_area().encode(
         x='date:T',
         #y='count()',
-        y=alt.Y('count()', stack='normalize', axis=alt.Axis(format='%')), 
-        color='lineage_simplified:N',
-        tooltip=['date:T', 'count()', 'lineage_simplified:N']
+        y=alt.Y('count()'), 
+        color='lin_simple:N',
+        tooltip=['date:T', 'count()', 'lin_simple:N']
     ).properties(
-        title='Lineages over time'
+        title=f'Top {top_n} Lineages over time'
     )
-    plot.save(f'../results/{args.out_file}')
+    plot_total.save(f'../results/total_{args.out_file}')
+
+    plot_perc = alt.Chart(df).mark_area().encode(
+        x='date:T',
+        y=alt.Y('count()', stack='normalize'),
+        color='lin_simple:N',
+        tooltip=['date:T', 'count()', 'lin_simple:N']
+    ).properties(
+        title=f'Top {top_n} Lineages over time (perc)'
+    )
+    plot_perc.save(f'../results/perc_{args.out_file}')

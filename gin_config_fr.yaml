@@ -17,7 +17,7 @@ days_per_bin:
 # Minimal bin size - some fraction of big bin file (optional, default = 100)
 min_bin_size: 100
 # Minimal days span (optional, default = 3)
-min_days_span: 3
+min_days_span: 7
 # Maximal days span (optional, default = 21)
 max_days_span: 21
 # Mutant base frequency cutoff - as count (optional, default = 2)

@@ -6,7 +6,7 @@ name: spain
 reference: ""
 # Number of sequences per bin for binning mode with equally sized bins
 seq_per_bin:
-- 250
+- 400
 - 650
 - 850
 # Number of days per bin for binning mode with equal amount of calendar days
