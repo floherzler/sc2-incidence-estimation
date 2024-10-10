@@ -1,6 +1,8 @@
 # SARS-CoV-2 Incidence Estimation
 ## Project 4 by Nora Wild and Florian Herzler
 
+[Our Google Presentation](https://docs.google.com/presentation/d/15XBvj9IJd0EobPAPHM653WX2qZeGP24DdKORgymw1Sw/edit?usp=sharing)
+
 ![Workflow Diagram](results/plots/workFlo.svg)
 
 ```bash
